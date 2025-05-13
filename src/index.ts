@@ -31,11 +31,13 @@ socketIO.on('connection', (socket: any) => {
     });
 
     socket.on('chat message', (msg: any) => {
-        socketIO.emit('chat message', {
-            username: socket.username,
-            message: msg 
-        });
+    socketIO.emit('chat message', {
+        username: socket.username,
+        message: msg.message || '',
+        image: msg.image || null
     });
+    });
+
 
     socket.on('disconnect', () => {
         if (socket.username) {
